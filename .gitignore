@@ -1,0 +1,16 @@
+# Node modules (if you add tooling later)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build output (if you add a build step)
+dist/
+build/
+
+# Netlify
+.netlify/ 
