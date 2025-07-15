@@ -1,349 +1,327 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red70\green137\blue204;\red23\green24\blue24;\red140\green211\blue254;
-\red202\green202\blue202;\red109\green109\blue109;\red194\green126\blue101;\red109\green115\blue120;\red212\green212\blue212;
-\red113\green192\blue131;\red167\green197\blue152;\red183\green111\blue247;\red246\green124\blue48;\red54\green192\blue160;
-}
-{\*\expandedcolortbl;;\cssrgb\c33725\c61176\c83922;\cssrgb\c11765\c12157\c12549;\cssrgb\c61176\c86275\c99608;
-\cssrgb\c83137\c83137\c83137;\cssrgb\c50196\c50196\c50196;\cssrgb\c80784\c56863\c47059;\cssrgb\c50196\c52549\c54510;\cssrgb\c86275\c86275\c86275;
-\cssrgb\c50588\c78824\c58431;\cssrgb\c70980\c80784\c65882;\cssrgb\c77255\c54118\c97647;\cssrgb\c98039\c56471\c24314;\cssrgb\c23922\c78824\c69020;
-}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hidden Tax: An Interactive Analysis for Nonprofits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The application is designed in three thematic, interactive sections to guide a nonprofit leader from problem awareness to actionable solution. 1) 'The Problem: The Hidden Tax' uses a dashboard of interactive charts and stat cards to make the costs of inaction tangible and immediately impactful. 2) 'The Solution: Return on Mission' shifts the narrative, using comparative visuals and case studies to showcase the strategic benefits of investment. 3) 'The Tool: Pathfinder Audit' transforms the report's static checklist into a dynamic, personalized self-assessment tool. This structure was chosen to create a journey that first builds urgency, then provides a hopeful path forward, and finally empowers the user with a practical tool, making the report's dense information highly consumable and actionable for a board or executive director. -->
+    <!-- Visualization & Content Choices: The application translates the report's key data points into interactive visualizations to enhance understanding. Section 1 (Problem): Stats on breach costs and staff turnover are presented in large, impactful stat cards (HTML/CSS) to grab attention. IT budget waste is shown in a Donut Chart (Chart.js) for clear proportional comparison. Spending disparity is a Bar Chart (Chart.js) to highlight the "tech poverty premium." Section 2 (Solution): Donor retention improvements are visualized with a Line Chart (Chart.js) to show change over time. Case study success is shown via "before/after" stat cards (HTML/CSS). Section 3 (Tool): The audit framework is an interactive checklist (HTML/JS) with a progress bar, turning a passive table into an engaging diagnostic. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* warm neutral */
+            color: #2B3A67; /* deep blue */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #4FD1C5; /* muted teal */
+            border-bottom-color: #4FD1C5;
+        }
+        .stat-card {
+            background-color: white;
+            border-left: 5px solid #E53E3E; /* Red for costs */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .stat-card-positive {
+            border-left-color: #4FD1C5; /* Teal for benefits */
+        }
+        .audit-status-button:not(.active) {
+            background-color: #E2E8F0;
+        }
+        .audit-status-button.met.active {
+             background-color: #4FD1C5;
+             color: white;
+        }
+        .audit-status-button.needs-work.active {
+            background-color: #E53E3E;
+            color: white;
+        }
+    </style>
+</head>
+<body class="antialiased">
 
-\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 <!DOCTYPE\cf4 \strokec4  html\cf2 \strokec2 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf6 \cb3 \strokec6 <\cf2 \strokec2 html\cf5 \strokec5  \cf4 \strokec4 lang\cf6 \strokec6 =\cf7 \strokec7 "en"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cf6 \cb3 \strokec6 <\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 charset\cf6 \strokec6 =\cf7 \strokec7 "UTF-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 name\cf6 \strokec6 =\cf7 \strokec7 "viewport"\cf5 \strokec5  \cf4 \strokec4 content\cf6 \strokec6 =\cf7 \strokec7 "width=device-width, initial-scale=1.0"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \strokec5 The Hidden Tax: An Interactive Analysis for Nonprofits\cf6 \strokec6 </\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://cdn.tailwindcss.com"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://cdn.jsdelivr.net/npm/chart.js"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "preconnect"\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.googleapis.com"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "preconnect"\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.gstatic.com"\cf5 \strokec5  \cf4 \strokec4 crossorigin\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "stylesheet"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf8 \strokec8 <!-- Chosen Palette: Calm Harmony -->\cf5 \cb1 \strokec5 \
-\cb3     \cf8 \strokec8 <!-- Application Structure Plan: The application is designed in three thematic, interactive sections to guide a nonprofit leader from problem awareness to actionable solution. 1) 'The Problem: The Hidden Tax' uses a dashboard of interactive charts and stat cards to make the costs of inaction tangible and immediately impactful. 2) 'The Solution: Return on Mission' shifts the narrative, using comparative visuals and case studies to showcase the strategic benefits of investment. 3) 'The Tool: Pathfinder Audit' transforms the report's static checklist into a dynamic, personalized self-assessment tool. This structure was chosen to create a journey that first builds urgency, then provides a hopeful path forward, and finally empowers the user with a practical tool, making the report's dense information highly consumable and actionable for a board or executive director. -->\cf5 \cb1 \strokec5 \
-\cb3     \cf8 \strokec8 <!-- Visualization & Content Choices: The application translates the report's key data points into interactive visualizations to enhance understanding. Section 1 (Problem): Stats on breach costs and staff turnover are presented in large, impactful stat cards (HTML/CSS) to grab attention. IT budget waste is shown in a Donut Chart (Chart.js) for clear proportional comparison. Spending disparity is a Bar Chart (Chart.js) to highlight the "tech poverty premium." Section 2 (Solution): Donor retention improvements are visualized with a Line Chart (Chart.js) to show change over time. Case study success is shown via "before/after" stat cards (HTML/CSS). Section 3 (Tool): The audit framework is an interactive checklist (HTML/JS) with a progress bar, turning a passive table into an engaging diagnostic. -->\cf5 \cb1 \strokec5 \
-\cb3     \cf8 \strokec8 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 body\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 font-family:\cf5 \strokec5  \cf10 \strokec10 'Inter'\cf9 \strokec9 ,\cf5 \strokec5  \cf7 \strokec7 sans-serif\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 background-color:\cf5 \strokec5  #F8F9FA\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* warm neutral */\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 color:\cf5 \strokec5  #2B3A67\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* deep blue */\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .chart-container\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 position:\cf5 \strokec5  \cf7 \strokec7 relative\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 width:\cf5 \strokec5  \cf11 \strokec11 100%\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 max-width:\cf5 \strokec5  \cf11 \strokec11 500px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 margin-left:\cf5 \strokec5  \cf7 \strokec7 auto\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 margin-right:\cf5 \strokec5  \cf7 \strokec7 auto\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 height:\cf5 \strokec5  \cf11 \strokec11 300px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 max-height:\cf5 \strokec5  \cf11 \strokec11 350px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         @\cf2 \strokec2 media\cf5 \strokec5  (\cf2 \strokec2 min-width:\cf5 \strokec5  768\cf2 \strokec2 px\cf5 \strokec5 ) \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             .chart-container \{\cb1 \
-\cb3                 \cf4 \strokec4 height:\cf5 \strokec5  \cf11 \strokec11 350px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \}\cb1 \
-\cb3         \cf2 \strokec2 .nav-link\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 transition:\cf5 \strokec5  \cf7 \strokec7 color\cf5 \strokec5  \cf11 \strokec11 0.3s\cf9 \strokec9 ,\cf5 \strokec5  \cf7 \strokec7 border-bottom-color\cf5 \strokec5  \cf11 \strokec11 0.3s\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 border-bottom:\cf5 \strokec5  \cf11 \strokec11 2px\cf5 \strokec5  \cf7 \strokec7 solid\cf5 \strokec5  \cf7 \strokec7 transparent\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .nav-link:hover\cf9 \strokec9 ,\cf5 \strokec5  \cf2 \strokec2 .nav-link.active\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 color:\cf5 \strokec5  #4FD1C5\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* muted teal */\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 border-bottom-color:\cf5 \strokec5  #4FD1C5\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .stat-card\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 background-color:\cf5 \strokec5  \cf7 \strokec7 white\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 border-left:\cf5 \strokec5  \cf11 \strokec11 5px\cf5 \strokec5  \cf7 \strokec7 solid\cf5 \strokec5  #E53E3E\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* Red for costs */\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 transition:\cf5 \strokec5  \cf7 \strokec7 transform\cf5 \strokec5  \cf11 \strokec11 0.3s\cf9 \strokec9 ,\cf5 \strokec5  \cf7 \strokec7 box-shadow\cf5 \strokec5  \cf11 \strokec11 0.3s\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .stat-card:hover\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 transform:\cf5 \strokec5  \cf7 \strokec7 translateY(\cf11 \strokec11 -5px\cf7 \strokec7 )\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 box-shadow:\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 10px\cf5 \strokec5  \cf11 \strokec11 15px\cf5 \strokec5  \cf11 \strokec11 -3px\cf5 \strokec5  \cf7 \strokec7 rgba(\cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0.1\cf7 \strokec7 )\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 4px\cf5 \strokec5  \cf11 \strokec11 6px\cf5 \strokec5  \cf11 \strokec11 -2px\cf5 \strokec5  \cf7 \strokec7 rgba(\cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0.05\cf7 \strokec7 )\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .stat-card-positive\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 border-left-color:\cf5 \strokec5  #4FD1C5\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* Teal for benefits */\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .audit-status-button:not\cf5 \strokec5 (\cf2 \strokec2 .active\cf5 \strokec5 ) \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 background-color:\cf5 \strokec5  #E2E8F0\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .audit-status-button.met.active\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3              \cf4 \strokec4 background-color:\cf5 \strokec5  #4FD1C5\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3              \cf4 \strokec4 color:\cf5 \strokec5  \cf7 \strokec7 white\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .audit-status-button.needs-work.active\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 background-color:\cf5 \strokec5  #E53E3E\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 color:\cf5 \strokec5  \cf7 \strokec7 white\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf6 \cb3 \strokec6 </\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cf6 \cb3 \strokec6 <\cf2 \strokec2 body\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "antialiased"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3     \cf8 \strokec8 <!-- Header & Navigation -->\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 header\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 nav\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "container mx-auto px-6 py-4 flex justify-between items-center"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 h1\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-xl md:text-2xl font-bold text-[#2B3A67]"\cf6 \strokec6 >\cf5 \strokec5 Nonprofit Tech Analysis\cf6 \strokec6 </\cf2 \strokec2 h1\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hidden md:flex items-center space-x-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#problem"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "nav-link text-lg font-medium pb-1"\cf6 \strokec6 >\cf5 \strokec5 The Problem\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#solution"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "nav-link text-lg font-medium pb-1"\cf6 \strokec6 >\cf5 \strokec5 The Solution\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#audit"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "nav-link text-lg font-medium pb-1"\cf6 \strokec6 >\cf5 \strokec5 The Audit Tool\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "mobile-menu-button"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FD1C5]"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 svg\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "w-6 h-6"\cf5 \strokec5  \cf4 \strokec4 fill\cf6 \strokec6 =\cf7 \strokec7 "none"\cf5 \strokec5  \cf4 \strokec4 stroke\cf6 \strokec6 =\cf7 \strokec7 "currentColor"\cf5 \strokec5  \cf4 \strokec4 viewBox\cf6 \strokec6 =\cf7 \strokec7 "0 0 24 24"\cf5 \strokec5  \cf4 \strokec4 xmlns\cf6 \strokec6 =\cf7 \strokec7 "http://www.w3.org/2000/svg"\cf6 \strokec6 ><\cf2 \strokec2 path\cf5 \strokec5  \cf4 \strokec4 stroke-linecap\cf6 \strokec6 =\cf7 \strokec7 "round"\cf5 \strokec5  \cf4 \strokec4 stroke-linejoin\cf6 \strokec6 =\cf7 \strokec7 "round"\cf5 \strokec5  \cf4 \strokec4 stroke-width\cf6 \strokec6 =\cf7 \strokec7 "2"\cf5 \strokec5  \cf4 \strokec4 d\cf6 \strokec6 =\cf7 \strokec7 "M4 6h16M4 12h16m-7 6h7"\cf6 \strokec6 ></\cf2 \strokec2 path\cf6 \strokec6 ></\cf2 \strokec2 svg\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 nav\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "mobile-menu"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hidden md:hidden px-6 pb-4"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3              \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#problem"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block py-2 nav-link"\cf6 \strokec6 >\cf5 \strokec5 The Problem\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3              \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#solution"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block py-2 nav-link"\cf6 \strokec6 >\cf5 \strokec5 The Solution\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3              \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#audit"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block py-2 nav-link"\cf6 \strokec6 >\cf5 \strokec5 The Audit Tool\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 header\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 main\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "container mx-auto px-6 py-12"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 <!-- Section 1: The Problem -->\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 section\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "problem"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "scroll-mt-24 mb-20"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-center mb-12"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 h2\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold mb-4"\cf6 \strokec6 >\cf5 \strokec5 The Hidden Tax of Technology Neglect\cf6 \strokec6 </\cf2 \strokec2 h2\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "max-w-3xl mx-auto text-lg text-gray-600"\cf6 \strokec6 >\cf5 \strokec5 Neglecting technology isn't saving money; it's imposing a "hidden tax" on your finances, staff, and mission. This section breaks down the tangible costs of inaction, moving beyond abstract risks to show the real financial and human impact on nonprofit organizations.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "stat-card p-6 rounded-lg shadow-md"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold text-[#E53E3E] mb-2"\cf6 \strokec6 >\cf5 \strokec5 $2.75M\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-semibold text-lg mb-2"\cf6 \strokec6 >\cf5 \strokec5 Avg. Data Breach Cost\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 text-sm"\cf6 \strokec6 >\cf5 \strokec5 The staggering cost for a nonprofit to recover from a single data breach, representing an existential financial threat.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "stat-card p-6 rounded-lg shadow-md"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold text-[#E53E3E] mb-2"\cf6 \strokec6 >\cf5 \strokec5 33%\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-semibold text-lg mb-2"\cf6 \strokec6 >\cf5 \strokec5 Wasted IT Budget\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 text-sm"\cf6 \strokec6 >\cf5 \strokec5 Portion of IT budgets lost to unused licenses and inefficient systems\'97capital that could fund innovation.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "stat-card p-6 rounded-lg shadow-md"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold text-[#E53E3E] mb-2"\cf6 \strokec6 >\cf5 \strokec5 19%\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-semibold text-lg mb-2"\cf6 \strokec6 >\cf5 \strokec5 Annual Staff Turnover\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 text-sm"\cf6 \strokec6 >\cf5 \strokec5 Frustrating technology is a key driver of high turnover, with replacement costs up to 33% of a salary.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "stat-card p-6 rounded-lg shadow-md"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold text-[#E53E3E] mb-2"\cf6 \strokec6 >\cf5 \strokec5 55%\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-semibold text-lg mb-2"\cf6 \strokec6 >\cf5 \strokec5 Avg. Donor Churn Rate\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 text-sm"\cf6 \strokec6 >\cf5 \strokec5 More than half of all donors are lost annually, often due to poor communication enabled by outdated systems.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "grid lg:grid-cols-2 gap-12 items-center"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white p-8 rounded-lg shadow-lg"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-2xl font-bold mb-4 text-center"\cf6 \strokec6 >\cf5 \strokec5 The "Tech Poverty Premium"\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 mb-6 text-center"\cf6 \strokec6 >\cf5 \strokec5 Smaller nonprofits often spend a much larger percentage of their budget on inefficient, reactive "break-fix" IT, perpetuating a cycle of high costs and low performance. This chart illustrates the disparity.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "chart-container"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 <\cf2 \strokec2 canvas\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "spendingChart"\cf6 \strokec6 ></\cf2 \strokec2 canvas\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white p-8 rounded-lg shadow-lg"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-2xl font-bold mb-4 text-center"\cf6 \strokec6 >\cf5 \strokec5 Where Does the Wasted Money Go?\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                      \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 mb-6 text-center"\cf6 \strokec6 >\cf5 \strokec5 Approximately one-third of a nonprofit's IT budget is squandered. This isn't on mission-critical tools but on unused licenses and redundant systems across the organization.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "chart-container"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 <\cf2 \strokec2 canvas\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "wasteChart"\cf6 \strokec6 ></\cf2 \strokec2 canvas\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 section\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 hr\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "my-20 border-gray-300"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 <!-- Section 2: The Solution -->\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 section\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "solution"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "scroll-mt-24 mb-20"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-center mb-12"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 h2\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold mb-4"\cf6 \strokec6 >\cf5 \strokec5 The Strategic Imperative: Investing for Impact\cf6 \strokec6 </\cf2 \strokec2 h2\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "max-w-3xl mx-auto text-lg text-gray-600"\cf6 \strokec6 >\cf5 \strokec5 The narrative of technology shouldn't be about cost, but about opportunity. Strategic investment is a powerful lever for growth, efficiency, and scaled impact. This section explores the "Return on Mission" (ROM) and how modern infrastructure directly translates into mission success.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "grid md:grid-cols-1 lg:grid-cols-2 gap-12"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white p-8 rounded-lg shadow-lg"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-2xl font-bold mb-4 text-center"\cf6 \strokec6 >\cf5 \strokec5 Solving the "Leaky Bucket"\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 mb-6 text-center"\cf6 \strokec6 >\cf5 \strokec5 Effective technology is the key to converting first-time donors into loyal supporters. A small 10% increase in retention can boost a donor's lifetime value by up to 200%. This chart shows the dramatic difference in retention rates.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "chart-container"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 <\cf2 \strokec2 canvas\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "retentionChart"\cf6 \strokec6 ></\cf2 \strokec2 canvas\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cb1 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white p-8 rounded-lg shadow-lg flex flex-col justify-center"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-2xl font-bold mb-6 text-center"\cf6 \strokec6 >\cf5 \strokec5 The Power of Digital Maturity\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "space-y-6"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "stat-card stat-card-positive p-6 rounded-lg"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                             \cf6 \strokec6 <\cf2 \strokec2 h4\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-3xl font-bold text-[#4FD1C5] mb-1"\cf6 \strokec6 >\cf5 \strokec5 4x More Likely\cf6 \strokec6 </\cf2 \strokec2 h4\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                             \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-semibold text-lg"\cf6 \strokec6 >\cf5 \strokec5 To Achieve Mission Goals\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                             \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 text-sm"\cf6 \strokec6 >\cf5 \strokec5 Digitally mature nonprofits dramatically outperform their peers in reaching their core objectives.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "stat-card stat-card-positive p-6 rounded-lg"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                             \cf6 \strokec6 <\cf2 \strokec2 h4\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-3xl font-bold text-[#4FD1C5] mb-1"\cf6 \strokec6 >\cf5 \strokec5 2x More Likely\cf6 \strokec6 </\cf2 \strokec2 h4\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                             \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-semibold text-lg"\cf6 \strokec6 >\cf5 \strokec5 To Improve Efficiency\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                             \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600 text-sm"\cf6 \strokec6 >\cf5 \strokec5 Strategic tech use leads to significant gains in operational effectiveness, freeing resources for mission work.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 section\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 hr\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "my-20 border-gray-300"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cb1 \
-\cb3         \cf8 \strokec8 <!-- Section 3: The Audit Tool -->\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 section\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "audit"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "scroll-mt-24"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-center mb-12"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 h2\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-4xl font-bold mb-4"\cf6 \strokec6 >\cf5 \strokec5 The Pathfinder: Your Infrastructure Audit\cf6 \strokec6 </\cf2 \strokec2 h2\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "max-w-3xl mx-auto text-lg text-gray-600"\cf6 \strokec6 >\cf5 \strokec5 This isn't a technical audit for IT staff, but a strategic assessment for you\'97the Executive Director or Board Member. Use this tool to diagnose the health of your core systems, identify critical risks, and build a data-driven roadmap for a more resilient and impactful future.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cb1 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white p-8 rounded-lg shadow-2xl"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                  \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mb-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-xl font-bold mb-2"\cf6 \strokec6 >\cf5 \strokec5 Your Organization's Health Score\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "w-full bg-gray-200 rounded-full h-6"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "audit-progress-bar"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-[#4FD1C5] h-6 rounded-full text-center text-white font-bold text-sm leading-6 transition-all duration-500"\cf5 \strokec5  \cf4 \strokec4 style\cf6 \strokec6 =\cf7 \strokec7 "width: 0%;"\cf6 \strokec6 >\cf5 \strokec5 0%\cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-sm text-gray-500 mt-2"\cf6 \strokec6 >\cf5 \strokec5 Complete the audit below to see your score update in real-time.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "audit-framework"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "space-y-8"\cf6 \strokec6 ></\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cb1 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 section\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 main\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         document\cf9 \strokec9 .\cf5 \strokec5 addEventListener\cf9 \strokec9 (\cf10 \strokec10 'DOMContentLoaded'\cf9 \strokec9 ,\cf5 \strokec5  \cf12 \strokec12 function\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cb1 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  auditData \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 pillars\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
-\cb3                     \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Technology Infrastructure (The Tools)"\cf9 \strokec9 ,\cf5 \strokec5  areas\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cybersecurity"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Does the organization have a comprehensive, written Information Security Policy (ISP) that is reviewed annually?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Does the organization utilize multi-factor authentication (MFA) for all key systems, including email and CRM?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Is all sensitive donor and client data encrypted both at rest (on servers) and in transit (over networks)?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "When was the last independent, third-party cybersecurity audit or penetration test conducted?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Data & Systems Integrity"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Is there a documented, tested disaster recovery and business continuity plan in place?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Are data backups performed automatically and stored securely off-site?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Is there a formal inventory of all hardware assets (servers, laptops) and their age/replacement schedule?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Does the organization have a process to ensure all software licenses are compliant and actively used?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
-\cb3                     \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Process Infrastructure (The Workflows)"\cf9 \strokec9 ,\cf5 \strokec5  areas\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Operational Efficiency"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Have key organizational workflows (e.g., gift processing, client intake, financial reporting) been mapped to identify bottlenecks and manual data entry points?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "What percentage of routine, repetitive tasks (e.g., generating thank-you letters, reporting) have been automated?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "How long does it take, on average, to generate a comprehensive financial report or a segmented donor list for a campaign?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "System Integration"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Do key systems (e.g., CRM, accounting software, email marketing platform) integrate and share data automatically, or is manual data transfer required?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Are there multiple software tools being used for the same function in different departments, creating data silos?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
-\cb3                     \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Human Capital Infrastructure (The People)"\cf9 \strokec9 ,\cf5 \strokec5  areas\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Skills & Training"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Is technology training a formal part of the onboarding process for all new staff and key volunteers?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "What is the annual budget for staff technology training, and is it treated as a core part of the 'Human Stack'?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Does the organization survey staff to identify technology-related frustrations and training needs?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Roles & Morale"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Are there clearly defined roles and responsibilities for data entry, data quality, and system administration?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "In exit interviews, how frequently is 'frustration with technology/tools' cited as a contributing factor for departure?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
-\cb3                     \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Knowledge Management Infrastructure (The Insights)"\cf9 \strokec9 ,\cf5 \strokec5  areas\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Data-Driven Decision Making"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Does the leadership team have a real-time or near-real-time dashboard with key performance indicators (KPIs)?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Does the organization have a formal data retention and destruction policy that is actively followed?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Are key metrics, such as donor retention rates (overall, first-time, repeat), actively tracked and reported to the board?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Funder & Donor Reporting"\cf9 \strokec9 ,\cf5 \strokec5  questions\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \strokec5  \cf10 \strokec10 "Can the organization easily segment its donor base for personalized communication and targeted appeals?"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Can the organization quickly and accurately report on program outcomes and the use of restricted funds?"\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
-\cb3             \cb1 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  auditState \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\};\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 let\cf5 \strokec5  totalQuestions \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  auditContainer \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'audit-framework'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cb1 \
-\cb3             auditData\cf9 \strokec9 .\cf5 \strokec5 pillars\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 ((\cf5 \strokec5 pillar\cf9 \strokec9 ,\cf5 \strokec5  pIndex\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  pillarDiv \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'div'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 pillarDiv\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "border border-gray-200 rounded-lg"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  pillarHeader \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'h3'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 pillarHeader\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "text-2xl font-bold p-4 bg-gray-50 border-b cursor-pointer"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 pillarHeader\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `Pillar \cf9 \strokec9 $\{\cf5 \strokec5 pIndex \cf9 \strokec9 +\cf5 \strokec5  \cf13 \strokec13 1\cf9 \strokec9 \}\cf10 \strokec10 : \cf9 \strokec9 $\{\cf5 \strokec5 pillar\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 pillarDiv\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 pillarHeader\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  pillarContent \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'div'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 pillarContent\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'p-6 space-y-6 hidden'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 \cb1 \
-\cb3                 pillar\cf9 \strokec9 .\cf5 \strokec5 areas\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 ((\cf5 \strokec5 area\cf9 \strokec9 ,\cf5 \strokec5  aIndex\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     \cf12 \strokec12 const\cf5 \strokec5  areaTitle \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'h4'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     areaTitle\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "text-xl font-semibold text-[#2B3A67] border-b pb-2 mb-4"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                     areaTitle\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  area\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                     pillarContent\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 areaTitle\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     \cb1 \
-\cb3                     area\cf9 \strokec9 .\cf5 \strokec5 questions\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 ((\cf5 \strokec5 qText\cf9 \strokec9 ,\cf5 \strokec5  qIndex\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                         \cf12 \strokec12 const\cf5 \strokec5  qId \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `q_\cf9 \strokec9 $\{\cf5 \strokec5 pIndex\cf9 \strokec9 \}\cf10 \strokec10 _\cf9 \strokec9 $\{\cf5 \strokec5 aIndex\cf9 \strokec9 \}\cf10 \strokec10 _\cf9 \strokec9 $\{\cf5 \strokec5 qIndex\cf9 \strokec9 \}\cf10 \strokec10 `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         totalQuestions\cf9 \strokec9 ++;\cf5 \cb1 \strokec5 \
-\cb3                         auditState\cf9 \strokec9 [\cf5 \strokec5 qId\cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 null\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3                         \cf12 \strokec12 const\cf5 \strokec5  qDiv \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'div'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         qDiv\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'py-3'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3                         \cf12 \strokec12 const\cf5 \strokec5  qPara \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'p'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         qPara\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'mb-3 text-md'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         qPara\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  qText\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         qDiv\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 qPara\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\
-\cb3                         \cf12 \strokec12 const\cf5 \strokec5  btnGroup \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'div'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         btnGroup\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'flex space-x-2'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         \cb1 \
-\cb3                         \cf12 \strokec12 const\cf5 \strokec5  metBtn \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'button'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         metBtn\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'Met'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         metBtn\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'audit-status-button met px-4 py-1 rounded-full text-sm font-semibold transition'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         metBtn\cf9 \strokec9 .\cf5 \strokec5 dataset\cf9 \strokec9 .\cf5 \strokec5 questionId \cf9 \strokec9 =\cf5 \strokec5  qId\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         metBtn\cf9 \strokec9 .\cf5 \strokec5 dataset\cf9 \strokec9 .\cf5 \strokec5 status \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'met'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3                         \cf12 \strokec12 const\cf5 \strokec5  needsWorkBtn \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'button'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         needsWorkBtn\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'Needs Work'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         needsWorkBtn\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'audit-status-button needs-work px-4 py-1 rounded-full text-sm font-semibold transition'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         needsWorkBtn\cf9 \strokec9 .\cf5 \strokec5 dataset\cf9 \strokec9 .\cf5 \strokec5 questionId \cf9 \strokec9 =\cf5 \strokec5  qId\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                         needsWorkBtn\cf9 \strokec9 .\cf5 \strokec5 dataset\cf9 \strokec9 .\cf5 \strokec5 status \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'needs-work'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3                         btnGroup\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 metBtn\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         btnGroup\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 needsWorkBtn\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         qDiv\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 btnGroup\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                         pillarContent\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 qDiv\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3                 pillarDiv\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 pillarContent\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 auditContainer\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 pillarDiv\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\
-\cb3                 pillarHeader\cf9 \strokec9 .\cf5 \strokec5 addEventListener\cf9 \strokec9 (\cf10 \strokec10 'click'\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     pillarContent\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 toggle\cf9 \strokec9 (\cf10 \strokec10 'hidden'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     pillarHeader\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 toggle\cf9 \strokec9 (\cf10 \strokec10 'bg-gray-100'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf12 \strokec12 function\cf5 \strokec5  updateProgress\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  answeredQuestions \cf9 \strokec9 =\cf5 \strokec5  \cf14 \strokec14 Object\cf9 \strokec9 .\cf5 \strokec5 values\cf9 \strokec9 (\cf5 \strokec5 auditState\cf9 \strokec9 ).\cf5 \strokec5 filter\cf9 \strokec9 (\cf5 \strokec5 v \cf9 \strokec9 =>\cf5 \strokec5  v \cf9 \strokec9 !==\cf5 \strokec5  \cf12 \strokec12 null\cf9 \strokec9 ).\cf5 \strokec5 length\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  metQuestions \cf9 \strokec9 =\cf5 \strokec5  \cf14 \strokec14 Object\cf9 \strokec9 .\cf5 \strokec5 values\cf9 \strokec9 (\cf5 \strokec5 auditState\cf9 \strokec9 ).\cf5 \strokec5 filter\cf9 \strokec9 (\cf5 \strokec5 v \cf9 \strokec9 =>\cf5 \strokec5  v \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'met'\cf9 \strokec9 ).\cf5 \strokec5 length\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 \cb1 \
-\cb3                 \cf12 \strokec12 let\cf5 \strokec5  percentage \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 answeredQuestions \cf9 \strokec9 >\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     percentage \cf9 \strokec9 =\cf5 \strokec5  \cf14 \strokec14 Math\cf9 \strokec9 .\cf5 \strokec5 round\cf9 \strokec9 ((\cf5 \strokec5 metQuestions \cf9 \strokec9 /\cf5 \strokec5  answeredQuestions\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 *\cf5 \strokec5  \cf13 \strokec13 100\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3                 \cb1 \
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  progressBar \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'audit-progress-bar'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 progressBar\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 width \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf9 \strokec9 $\{\cf5 \strokec5 percentage\cf9 \strokec9 \}\cf10 \strokec10 %`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 progressBar\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf9 \strokec9 $\{\cf5 \strokec5 percentage\cf9 \strokec9 \}\cf10 \strokec10 %`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 percentage \cf9 \strokec9 <\cf5 \strokec5  \cf13 \strokec13 33\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  progressBar\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 backgroundColor \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 '#E53E3E'\cf9 \strokec9 ;\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cb1 \
-\cb3                 \cf12 \strokec12 else\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 percentage \cf9 \strokec9 <\cf5 \strokec5  \cf13 \strokec13 66\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  progressBar\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 backgroundColor \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 '#DD6B20'\cf9 \strokec9 ;\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cb1 \
-\cb3                 \cf12 \strokec12 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  progressBar\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 backgroundColor \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 '#4FD1C5'\cf9 \strokec9 ;\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3             auditContainer\cf9 \strokec9 .\cf5 \strokec5 addEventListener\cf9 \strokec9 (\cf10 \strokec10 'click'\cf9 \strokec9 ,\cf5 \strokec5  \cf12 \strokec12 function\cf9 \strokec9 (\cf5 \strokec5 e\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 e\cf9 \strokec9 .\cf5 \strokec5 target\cf9 \strokec9 .\cf5 \strokec5 matches\cf9 \strokec9 (\cf10 \strokec10 '.audit-status-button'\cf9 \strokec9 ))\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     \cf12 \strokec12 const\cf5 \strokec5  qId \cf9 \strokec9 =\cf5 \strokec5  e\cf9 \strokec9 .\cf5 \strokec5 target\cf9 \strokec9 .\cf5 \strokec5 dataset\cf9 \strokec9 .\cf5 \strokec5 questionId\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                     \cf12 \strokec12 const\cf5 \strokec5  status \cf9 \strokec9 =\cf5 \strokec5  e\cf9 \strokec9 .\cf5 \strokec5 target\cf9 \strokec9 .\cf5 \strokec5 dataset\cf9 \strokec9 .\cf5 \strokec5 status\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                     auditState\cf9 \strokec9 [\cf5 \strokec5 qId\cf9 \strokec9 ]\cf5 \strokec5  \cf9 \strokec9 =\cf5 \strokec5  status\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                     \cb1 \
-\cb3                     \cf12 \strokec12 const\cf5 \strokec5  buttons \cf9 \strokec9 =\cf5 \strokec5  e\cf9 \strokec9 .\cf5 \strokec5 target\cf9 \strokec9 .\cf5 \strokec5 parentElement\cf9 \strokec9 .\cf5 \strokec5 querySelectorAll\cf9 \strokec9 (\cf10 \strokec10 '.audit-status-button'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     buttons\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 (\cf5 \strokec5 btn \cf9 \strokec9 =>\cf5 \strokec5  btn\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 remove\cf9 \strokec9 (\cf10 \strokec10 'active'\cf9 \strokec9 ));\cf5 \cb1 \strokec5 \
-\cb3                     e\cf9 \strokec9 .\cf5 \strokec5 target\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 add\cf9 \strokec9 (\cf10 \strokec10 'active'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     updateProgress\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  commonChartOptions \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  responsive\cf9 \strokec9 :\cf5 \strokec5  \cf12 \strokec12 true\cf9 \strokec9 ,\cf5 \strokec5  maintainAspectRatio\cf9 \strokec9 :\cf5 \strokec5  \cf12 \strokec12 false\cf9 \strokec9 ,\cf5 \strokec5  plugins\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  legend\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  position\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'bottom'\cf9 \strokec9 ,\cf5 \strokec5  labels\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  font\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  size\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 12\cf9 \strokec9 ,\cf5 \strokec5  family\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'Inter'\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  color\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#4A5568'\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  scales\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  x\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  ticks\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  font\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  size\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 12\cf9 \strokec9 ,\cf5 \strokec5  family\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'Inter'\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  color\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#4A5568'\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  grid\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  display\cf9 \strokec9 :\cf5 \strokec5  \cf12 \strokec12 false\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  y\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  ticks\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  font\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  size\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 12\cf9 \strokec9 ,\cf5 \strokec5  family\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'Inter'\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  color\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#4A5568'\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  grid\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  color\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#E2E8F0'\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  spendingCtx \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'spendingChart'\cf9 \strokec9 ).\cf5 \strokec5 getContext\cf9 \strokec9 (\cf10 \strokec10 '2d'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Chart\cf9 \strokec9 (\cf5 \strokec5 spendingCtx\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  type\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'bar'\cf9 \strokec9 ,\cf5 \strokec5  data\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  labels\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 'Small Nonprofits (<$1M)'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 'Large Nonprofits'\cf9 \strokec9 ],\cf5 \strokec5  datasets\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\{\cf5 \strokec5  label\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '% of Budget Spent on Tech'\cf9 \strokec9 ,\cf5 \strokec5  data\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf13 \strokec13 13.2\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 2.8\cf9 \strokec9 ],\cf5 \strokec5  backgroundColor\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 '#F56565'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#4FD1C5'\cf9 \strokec9 ],\cf5 \strokec5  borderColor\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 '#C53030'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#38B2AC'\cf9 \strokec9 ],\cf5 \strokec5  borderWidth\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 1\cf5 \strokec5  \cf9 \strokec9 \}]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  options\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf9 \strokec9 ...\cf5 \strokec5 commonChartOptions\cf9 \strokec9 ,\cf5 \strokec5  indexAxis\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'y'\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  wasteCtx \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'wasteChart'\cf9 \strokec9 ).\cf5 \strokec5 getContext\cf9 \strokec9 (\cf10 \strokec10 '2d'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Chart\cf9 \strokec9 (\cf5 \strokec5 wasteCtx\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  type\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'doughnut'\cf9 \strokec9 ,\cf5 \strokec5  data\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  labels\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 'Desktop Software'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 'Data Center Software'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 'SaaS Applications'\cf9 \strokec9 ],\cf5 \strokec5  datasets\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\{\cf5 \strokec5  label\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'Wasted Budget Breakdown'\cf9 \strokec9 ,\cf5 \strokec5  data\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf13 \strokec13 38\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 34\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 33\cf9 \strokec9 ],\cf5 \strokec5  backgroundColor\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 '#E53E3E'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#DD6B20'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#F6E05E'\cf9 \strokec9 ],\cf5 \strokec5  hoverOffset\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 4\cf5 \strokec5  \cf9 \strokec9 \}]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  options\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf9 \strokec9 ...\cf5 \strokec5 commonChartOptions\cf9 \strokec9 ,\cf5 \strokec5  scales\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  retentionCtx \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'retentionChart'\cf9 \strokec9 ).\cf5 \strokec5 getContext\cf9 \strokec9 (\cf10 \strokec10 '2d'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Chart\cf9 \strokec9 (\cf5 \strokec5 retentionCtx\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  type\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'bar'\cf9 \strokec9 ,\cf5 \strokec5  data\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  labels\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 'First-Time Donors'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 'Repeat Donors'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 'Monthly Donors'\cf9 \strokec9 ],\cf5 \strokec5  datasets\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\{\cf5 \strokec5  label\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'Donor Retention Rate'\cf9 \strokec9 ,\cf5 \strokec5  data\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf13 \strokec13 23\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 60\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 90\cf9 \strokec9 ],\cf5 \strokec5  backgroundColor\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 '#F56565'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#F6E05E'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#4FD1C5'\cf9 \strokec9 ],\cf5 \strokec5  borderColor\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 '#C53030'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#B7791F'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '#38B2AC'\cf9 \strokec9 ],\cf5 \strokec5  borderWidth\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 1\cf5 \strokec5  \cf9 \strokec9 \}]\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \strokec5  options\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf9 \strokec9 ...\cf5 \strokec5 commonChartOptions\cf9 \strokec9 ,\cf5 \strokec5  scales\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf9 \strokec9 ...\cf5 \strokec5 commonChartOptions\cf9 \strokec9 .\cf5 \strokec5 scales\cf9 \strokec9 ,\cf5 \strokec5  y\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf9 \strokec9 ...\cf5 \strokec5 commonChartOptions\cf9 \strokec9 .\cf5 \strokec5 scales\cf9 \strokec9 .\cf5 \strokec5 y\cf9 \strokec9 ,\cf5 \strokec5  suggestedMax\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 100\cf9 \strokec9 ,\cf5 \strokec5  ticks\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf9 \strokec9 ...\cf5 \strokec5 commonChartOptions\cf9 \strokec9 .\cf5 \strokec5 scales\cf9 \strokec9 .\cf5 \strokec5 y\cf9 \strokec9 .\cf5 \strokec5 ticks\cf9 \strokec9 ,\cf5 \strokec5  callback\cf9 \strokec9 :\cf5 \strokec5  value \cf9 \strokec9 =>\cf5 \strokec5  value \cf9 \strokec9 +\cf5 \strokec5  \cf10 \strokec10 '%'\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  mobileMenuButton \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'mobile-menu-button'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  mobileMenu \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'mobile-menu'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             mobileMenuButton\cf9 \strokec9 .\cf5 \strokec5 addEventListener\cf9 \strokec9 (\cf10 \strokec10 'click'\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  mobileMenu\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 toggle\cf9 \strokec9 (\cf10 \strokec10 'hidden'\cf9 \strokec9 );\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  navLinks \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 querySelectorAll\cf9 \strokec9 (\cf10 \strokec10 '.nav-link'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  sections \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 querySelectorAll\cf9 \strokec9 (\cf10 \strokec10 'section'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             window\cf9 \strokec9 .\cf5 \strokec5 addEventListener\cf9 \strokec9 (\cf10 \strokec10 'scroll'\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf12 \strokec12 let\cf5 \strokec5  current \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \strokec5  sections\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 (\cf5 \strokec5 section \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf12 \strokec12 const\cf5 \strokec5  sectionTop \cf9 \strokec9 =\cf5 \strokec5  section\cf9 \strokec9 .\cf5 \strokec5 offsetTop\cf9 \strokec9 ;\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 pageYOffset \cf9 \strokec9 >=\cf5 \strokec5  sectionTop \cf9 \strokec9 -\cf5 \strokec5  \cf13 \strokec13 120\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  current \cf9 \strokec9 =\cf5 \strokec5  section\cf9 \strokec9 .\cf5 \strokec5 getAttribute\cf9 \strokec9 (\cf10 \strokec10 'id'\cf9 \strokec9 );\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \strokec5  navLinks\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 (\cf5 \strokec5 link \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  link\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 remove\cf9 \strokec9 (\cf10 \strokec10 'active'\cf9 \strokec9 );\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 link\cf9 \strokec9 .\cf5 \strokec5 getAttribute\cf9 \strokec9 (\cf10 \strokec10 'href'\cf9 \strokec9 ).\cf5 \strokec5 includes\cf9 \strokec9 (\cf5 \strokec5 current\cf9 \strokec9 ))\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  link\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 add\cf9 \strokec9 (\cf10 \strokec10 'active'\cf9 \strokec9 );\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf6 \cb3 \strokec6 </\cf2 \strokec2 body\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cf6 \cb3 \strokec6 </\cf2 \strokec2 html\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-}
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#2B3A67]">Nonprofit Tech Analysis</h1>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#problem" class="nav-link text-lg font-medium pb-1">The Problem</a>
+                <a href="#solution" class="nav-link text-lg font-medium pb-1">The Solution</a>
+                <a href="#audit" class="nav-link text-lg font-medium pb-1">The Audit Tool</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FD1C5]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="#problem" class="block py-2 nav-link">The Problem</a>
+             <a href="#solution" class="block py-2 nav-link">The Solution</a>
+             <a href="#audit" class="block py-2 nav-link">The Audit Tool</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Section 1: The Problem -->
+        <section id="problem" class="scroll-mt-24 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">The Hidden Tax of Technology Neglect</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600">Neglecting technology isn't saving money; it's imposing a "hidden tax" on your finances, staff, and mission. This section breaks down the tangible costs of inaction, moving beyond abstract risks to show the real financial and human impact on nonprofit organizations.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="stat-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-[#E53E3E] mb-2">$2.75M</h3>
+                    <p class="font-semibold text-lg mb-2">Avg. Data Breach Cost</p>
+                    <p class="text-gray-600 text-sm">The staggering cost for a nonprofit to recover from a single data breach, representing an existential financial threat.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-[#E53E3E] mb-2">33%</h3>
+                    <p class="font-semibold text-lg mb-2">Wasted IT Budget</p>
+                    <p class="text-gray-600 text-sm">Portion of IT budgets lost to unused licenses and inefficient systems—capital that could fund innovation.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-[#E53E3E] mb-2">19%</h3>
+                    <p class="font-semibold text-lg mb-2">Annual Staff Turnover</p>
+                    <p class="text-gray-600 text-sm">Frustrating technology is a key driver of high turnover, with replacement costs up to 33% of a salary.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-[#E53E3E] mb-2">55%</h3>
+                    <p class="font-semibold text-lg mb-2">Avg. Donor Churn Rate</p>
+                    <p class="text-gray-600 text-sm">More than half of all donors are lost annually, often due to poor communication enabled by outdated systems.</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-center">The "Tech Poverty Premium"</h3>
+                    <p class="text-gray-600 mb-6 text-center">Smaller nonprofits often spend a much larger percentage of their budget on inefficient, reactive "break-fix" IT, perpetuating a cycle of high costs and low performance. This chart illustrates the disparity.</p>
+                    <div class="chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Where Does the Wasted Money Go?</h3>
+                     <p class="text-gray-600 mb-6 text-center">Approximately one-third of a nonprofit's IT budget is squandered. This isn't on mission-critical tools but on unused licenses and redundant systems across the organization.</p>
+                    <div class="chart-container">
+                        <canvas id="wasteChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-gray-300">
+
+        <!-- Section 2: The Solution -->
+        <section id="solution" class="scroll-mt-24 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">The Strategic Imperative: Investing for Impact</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600">The narrative of technology shouldn't be about cost, but about opportunity. Strategic investment is a powerful lever for growth, efficiency, and scaled impact. This section explores the "Return on Mission" (ROM) and how modern infrastructure directly translates into mission success.</p>
+            </div>
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Solving the "Leaky Bucket"</h3>
+                    <p class="text-gray-600 mb-6 text-center">Effective technology is the key to converting first-time donors into loyal supporters. A small 10% increase in retention can boost a donor's lifetime value by up to 200%. This chart shows the dramatic difference in retention rates.</p>
+                    <div class="chart-container">
+                        <canvas id="retentionChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-6 text-center">The Power of Digital Maturity</h3>
+                    <div class="space-y-6">
+                        <div class="stat-card stat-card-positive p-6 rounded-lg">
+                            <h4 class="text-3xl font-bold text-[#4FD1C5] mb-1">4x More Likely</h4>
+                            <p class="font-semibold text-lg">To Achieve Mission Goals</p>
+                            <p class="text-gray-600 text-sm">Digitally mature nonprofits dramatically outperform their peers in reaching their core objectives.</p>
+                        </div>
+                        <div class="stat-card stat-card-positive p-6 rounded-lg">
+                            <h4 class="text-3xl font-bold text-[#4FD1C5] mb-1">2x More Likely</h4>
+                            <p class="font-semibold text-lg">To Improve Efficiency</p>
+                            <p class="text-gray-600 text-sm">Strategic tech use leads to significant gains in operational effectiveness, freeing resources for mission work.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-gray-300">
+        
+        <!-- Section 3: The Audit Tool -->
+        <section id="audit" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">The Pathfinder: Your Infrastructure Audit</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600">This isn't a technical audit for IT staff, but a strategic assessment for you—the Executive Director or Board Member. Use this tool to diagnose the health of your core systems, identify critical risks, and build a data-driven roadmap for a more resilient and impactful future.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-2xl">
+                 <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-2">Your Organization's Health Score</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-6">
+                        <div id="audit-progress-bar" class="bg-[#4FD1C5] h-6 rounded-full text-center text-white font-bold text-sm leading-6 transition-all duration-500" style="width: 0%;">0%</div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Complete the audit below to see your score update in real-time.</p>
+                </div>
+
+                <div id="audit-framework" class="space-y-8"></div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const auditData = {
+                pillars: [
+                    { name: "Technology Infrastructure (The Tools)", areas: [ { name: "Cybersecurity", questions: [ "Does the organization have a comprehensive, written Information Security Policy (ISP) that is reviewed annually?", "Does the organization utilize multi-factor authentication (MFA) for all key systems, including email and CRM?", "Is all sensitive donor and client data encrypted both at rest (on servers) and in transit (over networks)?", "When was the last independent, third-party cybersecurity audit or penetration test conducted?" ] }, { name: "Data & Systems Integrity", questions: [ "Is there a documented, tested disaster recovery and business continuity plan in place?", "Are data backups performed automatically and stored securely off-site?", "Is there a formal inventory of all hardware assets (servers, laptops) and their age/replacement schedule?", "Does the organization have a process to ensure all software licenses are compliant and actively used?" ] } ] },
+                    { name: "Process Infrastructure (The Workflows)", areas: [ { name: "Operational Efficiency", questions: [ "Have key organizational workflows (e.g., gift processing, client intake, financial reporting) been mapped to identify bottlenecks and manual data entry points?", "What percentage of routine, repetitive tasks (e.g., generating thank-you letters, reporting) have been automated?", "How long does it take, on average, to generate a comprehensive financial report or a segmented donor list for a campaign?" ] }, { name: "System Integration", questions: [ "Do key systems (e.g., CRM, accounting software, email marketing platform) integrate and share data automatically, or is manual data transfer required?", "Are there multiple software tools being used for the same function in different departments, creating data silos?" ] } ] },
+                    { name: "Human Capital Infrastructure (The People)", areas: [ { name: "Skills & Training", questions: [ "Is technology training a formal part of the onboarding process for all new staff and key volunteers?", "What is the annual budget for staff technology training, and is it treated as a core part of the 'Human Stack'?", "Does the organization survey staff to identify technology-related frustrations and training needs?" ] }, { name: "Roles & Morale", questions: [ "Are there clearly defined roles and responsibilities for data entry, data quality, and system administration?", "In exit interviews, how frequently is 'frustration with technology/tools' cited as a contributing factor for departure?" ] } ] },
+                    { name: "Knowledge Management Infrastructure (The Insights)", areas: [ { name: "Data-Driven Decision Making", questions: [ "Does the leadership team have a real-time or near-real-time dashboard with key performance indicators (KPIs)?", "Does the organization have a formal data retention and destruction policy that is actively followed?", "Are key metrics, such as donor retention rates (overall, first-time, repeat), actively tracked and reported to the board?" ] }, { name: "Funder & Donor Reporting", questions: [ "Can the organization easily segment its donor base for personalized communication and targeted appeals?", "Can the organization quickly and accurately report on program outcomes and the use of restricted funds?" ] } ] }
+                ]
+            };
+            
+            const auditState = {};
+            let totalQuestions = 0;
+
+            const auditContainer = document.getElementById('audit-framework');
+            
+            auditData.pillars.forEach((pillar, pIndex) => {
+                const pillarDiv = document.createElement('div');
+                pillarDiv.className = "border border-gray-200 rounded-lg";
+
+                const pillarHeader = document.createElement('h3');
+                pillarHeader.className = "text-2xl font-bold p-4 bg-gray-50 border-b cursor-pointer";
+                pillarHeader.textContent = `Pillar ${pIndex + 1}: ${pillar.name}`;
+                pillarDiv.appendChild(pillarHeader);
+
+                const pillarContent = document.createElement('div');
+                pillarContent.className = 'p-6 space-y-6 hidden';
+                
+                pillar.areas.forEach((area, aIndex) => {
+                    const areaTitle = document.createElement('h4');
+                    areaTitle.className = "text-xl font-semibold text-[#2B3A67] border-b pb-2 mb-4";
+                    areaTitle.textContent = area.name;
+                    pillarContent.appendChild(areaTitle);
+                    
+                    area.questions.forEach((qText, qIndex) => {
+                        const qId = `q_${pIndex}_${aIndex}_${qIndex}`;
+                        totalQuestions++;
+                        auditState[qId] = null;
+
+                        const qDiv = document.createElement('div');
+                        qDiv.className = 'py-3';
+
+                        const qPara = document.createElement('p');
+                        qPara.className = 'mb-3 text-md';
+                        qPara.textContent = qText;
+                        qDiv.appendChild(qPara);
+
+                        const btnGroup = document.createElement('div');
+                        btnGroup.className = 'flex space-x-2';
+                        
+                        const metBtn = document.createElement('button');
+                        metBtn.textContent = 'Met';
+                        metBtn.className = 'audit-status-button met px-4 py-1 rounded-full text-sm font-semibold transition';
+                        metBtn.dataset.questionId = qId;
+                        metBtn.dataset.status = 'met';
+
+                        const needsWorkBtn = document.createElement('button');
+                        needsWorkBtn.textContent = 'Needs Work';
+                        needsWorkBtn.className = 'audit-status-button needs-work px-4 py-1 rounded-full text-sm font-semibold transition';
+                        needsWorkBtn.dataset.questionId = qId;
+                        needsWorkBtn.dataset.status = 'needs-work';
+
+                        btnGroup.appendChild(metBtn);
+                        btnGroup.appendChild(needsWorkBtn);
+                        qDiv.appendChild(btnGroup);
+                        pillarContent.appendChild(qDiv);
+                    });
+                });
+                pillarDiv.appendChild(pillarContent);
+                auditContainer.appendChild(pillarDiv);
+
+                pillarHeader.addEventListener('click', () => {
+                    pillarContent.classList.toggle('hidden');
+                    pillarHeader.classList.toggle('bg-gray-100');
+                });
+            });
+
+            function updateProgress() {
+                const answeredQuestions = Object.values(auditState).filter(v => v !== null).length;
+                const metQuestions = Object.values(auditState).filter(v => v === 'met').length;
+                
+                let percentage = 0;
+                if (answeredQuestions > 0) {
+                    percentage = Math.round((metQuestions / answeredQuestions) * 100);
+                }
+                
+                const progressBar = document.getElementById('audit-progress-bar');
+                progressBar.style.width = `${percentage}%`;
+                progressBar.textContent = `${percentage}%`;
+
+                if (percentage < 33) { progressBar.style.backgroundColor = '#E53E3E'; } 
+                else if (percentage < 66) { progressBar.style.backgroundColor = '#DD6B20'; } 
+                else { progressBar.style.backgroundColor = '#4FD1C5'; }
+            }
+
+            auditContainer.addEventListener('click', function(e) {
+                if (e.target.matches('.audit-status-button')) {
+                    const qId = e.target.dataset.questionId;
+                    const status = e.target.dataset.status;
+                    auditState[qId] = status;
+                    
+                    const buttons = e.target.parentElement.querySelectorAll('.audit-status-button');
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    updateProgress();
+                }
+            });
+
+            const commonChartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 12, family: 'Inter' }, color: '#4A5568' } } }, scales: { x: { ticks: { font: { size: 12, family: 'Inter' }, color: '#4A5568' }, grid: { display: false } }, y: { ticks: { font: { size: 12, family: 'Inter' }, color: '#4A5568' }, grid: { color: '#E2E8F0' } } } };
+            const spendingCtx = document.getElementById('spendingChart').getContext('2d');
+            new Chart(spendingCtx, { type: 'bar', data: { labels: ['Small Nonprofits (<$1M)', 'Large Nonprofits'], datasets: [{ label: '% of Budget Spent on Tech', data: [13.2, 2.8], backgroundColor: ['#F56565', '#4FD1C5'], borderColor: ['#C53030', '#38B2AC'], borderWidth: 1 }] }, options: { ...commonChartOptions, indexAxis: 'y' } });
+            const wasteCtx = document.getElementById('wasteChart').getContext('2d');
+            new Chart(wasteCtx, { type: 'doughnut', data: { labels: ['Desktop Software', 'Data Center Software', 'SaaS Applications'], datasets: [{ label: 'Wasted Budget Breakdown', data: [38, 34, 33], backgroundColor: ['#E53E3E', '#DD6B20', '#F6E05E'], hoverOffset: 4 }] }, options: { ...commonChartOptions, scales: {} } });
+            const retentionCtx = document.getElementById('retentionChart').getContext('2d');
+            new Chart(retentionCtx, { type: 'bar', data: { labels: ['First-Time Donors', 'Repeat Donors', 'Monthly Donors'], datasets: [{ label: 'Donor Retention Rate', data: [23, 60, 90], backgroundColor: ['#F56565', '#F6E05E', '#4FD1C5'], borderColor: ['#C53030', '#B7791F', '#38B2AC'], borderWidth: 1 }] }, options: { ...commonChartOptions, scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, suggestedMax: 100, ticks: { ...commonChartOptions.scales.y.ticks, callback: value => value + '%' } } } } });
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => { let current = ''; sections.forEach(section => { const sectionTop = section.offsetTop; if (pageYOffset >= sectionTop - 120) { current = section.getAttribute('id'); } }); navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href').includes(current)) { link.classList.add('active'); } }); });
+        });
+    </script>
+</body>
+</html>
