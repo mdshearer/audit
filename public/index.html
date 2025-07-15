@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hidden Tax: An Interactive Analysis for Nonprofits</title>
+    <title>The Hidden Tax: An Interactive Analysis for Mission-Driven Organizations</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Calm Harmony -->
-    <!-- Application Structure Plan: The application is designed in three thematic, interactive sections to guide a nonprofit leader from problem awareness to actionable solution. 1) 'The Problem: The Hidden Tax' uses a dashboard of interactive charts and stat cards to make the costs of inaction tangible and immediately impactful. 2) 'The Solution: Return on Mission' shifts the narrative, using comparative visuals and case studies to showcase the strategic benefits of investment. 3) 'The Tool: Pathfinder Audit' transforms the report's static checklist into a dynamic, personalized self-assessment tool. This structure was chosen to create a journey that first builds urgency, then provides a hopeful path forward, and finally empowers the user with a practical tool, making the report's dense information highly consumable and actionable for a board or executive director. -->
+    <!-- Application Structure Plan: The application is designed in three thematic, interactive sections to guide a mission-driven organization leader from problem awareness to actionable solution. 1) 'The Problem: The Hidden Tax' uses a dashboard of interactive charts and stat cards to make the costs of inaction tangible and immediately impactful. 2) 'The Solution: Return on Mission' shifts the narrative, using comparative visuals and case studies to showcase the strategic benefits of investment. 3) 'The Tool: Pathfinder Audit' transforms the report's static checklist into a dynamic, personalized self-assessment tool. This structure was chosen to create a journey that first builds urgency, then provides a hopeful path forward, and finally empowers the user with a practical tool, making the report's dense information highly consumable and actionable for a board or executive director. -->
     <!-- Visualization & Content Choices: The application translates the report's key data points into interactive visualizations to enhance understanding. Section 1 (Problem): Stats on breach costs and staff turnover are presented in large, impactful stat cards (HTML/CSS) to grab attention. IT budget waste is shown in a Donut Chart (Chart.js) for clear proportional comparison. Spending disparity is a Bar Chart (Chart.js) to highlight the "tech poverty premium." Section 2 (Solution): Donor retention improvements are visualized with a Line Chart (Chart.js) to show change over time. Case study success is shown via "before/after" stat cards (HTML/CSS). Section 3 (Tool): The audit framework is an interactive checklist (HTML/JS) with a progress bar, turning a passive table into an engaging diagnostic. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -71,7 +71,7 @@
     <!-- Header & Navigation -->
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold text-[#2B3A67]">Nonprofit Tech Analysis</h1>
+            <h1 class="text-xl md:text-2xl font-bold text-[#2B3A67]">Digital Infrastructure Analysis</h1>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#problem" class="nav-link text-lg font-medium pb-1">The Problem</a>
                 <a href="#solution" class="nav-link text-lg font-medium pb-1">The Solution</a>
@@ -98,14 +98,14 @@
         <section id="problem" class="scroll-mt-24 mb-20">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4">The Hidden Tax of Technology Neglect</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600">Neglecting technology isn't saving money; it's imposing a "hidden tax" on your finances, staff, and mission. This section breaks down the tangible costs of inaction, moving beyond abstract risks to show the real financial and human impact on nonprofit organizations.</p>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600">Neglecting technology isn't saving money; it's imposing a "hidden tax" on your finances, staff, and operations. This section breaks down the tangible costs of inaction, moving beyond abstract risks to show the real financial and human impact on organizations.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div class="stat-card p-6 rounded-lg shadow-md">
                     <h3 class="text-4xl font-bold text-[#E53E3E] mb-2">$2.75M</h3>
                     <p class="font-semibold text-lg mb-2">Avg. Data Breach Cost</p>
-                    <p class="text-gray-600 text-sm">The staggering cost for a nonprofit to recover from a single data breach, representing an existential financial threat.</p>
+                    <p class="text-gray-600 text-sm">The staggering cost for a mission-driven organization to recover from a single data breach, representing an existential financial threat.</p>
                 </div>
                 <div class="stat-card p-6 rounded-lg shadow-md">
                     <h3 class="text-4xl font-bold text-[#E53E3E] mb-2">33%</h3>
@@ -127,14 +127,14 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
                     <h3 class="text-2xl font-bold mb-4 text-center">The "Tech Poverty Premium"</h3>
-                    <p class="text-gray-600 mb-6 text-center">Smaller nonprofits often spend a much larger percentage of their budget on inefficient, reactive "break-fix" IT, perpetuating a cycle of high costs and low performance. This chart illustrates the disparity.</p>
+                    <p class="text-gray-600 mb-6 text-center">Smaller organizations often spend a much larger percentage of their budget on inefficient, reactive "break-fix" IT, perpetuating a cycle of high costs and low performance. This chart illustrates the disparity.</p>
                     <div class="chart-container">
                         <canvas id="spendingChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white p-8 rounded-lg shadow-lg">
                     <h3 class="text-2xl font-bold mb-4 text-center">Where Does the Wasted Money Go?</h3>
-                     <p class="text-gray-600 mb-6 text-center">Approximately one-third of a nonprofit's IT budget is squandered. This isn't on mission-critical tools but on unused licenses and redundant systems across the organization.</p>
+                     <p class="text-gray-600 mb-6 text-center">Approximately one-third of an organization's IT budget is squandered. This isn't on mission-critical tools but on unused licenses and redundant systems across the organization.</p>
                     <div class="chart-container">
                         <canvas id="wasteChart"></canvas>
                     </div>
@@ -173,7 +173,7 @@
                         <div class="stat-card stat-card-positive p-6 rounded-lg">
                             <h4 class="text-3xl font-bold text-[#4FD1C5] mb-1">4x More Likely</h4>
                             <p class="font-semibold text-lg">To Achieve Mission Goals</p>
-                            <p class="text-gray-600 text-sm">Digitally mature nonprofits dramatically outperform their peers in reaching their core objectives.</p>
+                            <p class="text-gray-600 text-sm">Digitally mature mission-driven organizations dramatically outperform their peers in reaching their core objectives.</p>
                         </div>
                         <div class="stat-card stat-card-positive p-6 rounded-lg">
                             <h4 class="text-3xl font-bold text-[#4FD1C5] mb-1">2x More Likely</h4>
@@ -398,7 +398,7 @@
 
             const commonChartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 12, family: 'Inter' }, color: '#4A5568' } } }, scales: { x: { ticks: { font: { size: 12, family: 'Inter' }, color: '#4A5568' }, grid: { display: false } }, y: { ticks: { font: { size: 12, family: 'Inter' }, color: '#4A5568' }, grid: { color: '#E2E8F0' } } } };
             const spendingCtx = document.getElementById('spendingChart').getContext('2d');
-            new Chart(spendingCtx, { type: 'bar', data: { labels: ['Small Nonprofits (<$1M)', 'Large Nonprofits'], datasets: [{ label: '% of Budget Spent on Tech', data: [13.2, 2.8], backgroundColor: ['#F56565', '#4FD1C5'], borderColor: ['#C53030', '#38B2AC'], borderWidth: 1 }] }, options: { ...commonChartOptions, indexAxis: 'y' } });
+            new Chart(spendingCtx, { type: 'bar', data: { labels: ['Small Organizations (<$1M)', 'Large Organizations'], datasets: [{ label: '% of Budget Spent on Tech', data: [13.2, 2.8], backgroundColor: ['#F56565', '#4FD1C5'], borderColor: ['#C53030', '#38B2AC'], borderWidth: 1 }] }, options: { ...commonChartOptions, indexAxis: 'y' } });
             const wasteCtx = document.getElementById('wasteChart').getContext('2d');
             new Chart(wasteCtx, { type: 'doughnut', data: { labels: ['Desktop Software', 'Data Center Software', 'SaaS Applications'], datasets: [{ label: 'Wasted Budget Breakdown', data: [38, 34, 33], backgroundColor: ['#E53E3E', '#DD6B20', '#F6E05E'], hoverOffset: 4 }] }, options: { ...commonChartOptions, scales: {} } });
             const retentionCtx = document.getElementById('retentionChart').getContext('2d');

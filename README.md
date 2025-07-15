@@ -1,10 +1,10 @@
-# Nonprofit Technology Infrastructure Audit
+# Mission-Driven Organization Technology Infrastructure Audit
 
-An interactive web application that transforms Optimi's Digital Systems Audit methodology into an engaging assessment tool for nonprofit organizations.
+An interactive web application that transforms Optimi's Digital Systems Audit methodology into an engaging assessment tool for mission-driven organizations.
 
 ## Overview
 
-"The Hidden Tax: An Interactive Analysis for Nonprofits" is a sophisticated lead generation and education tool that guides nonprofit leaders through:
+"The Hidden Tax: An Interactive Analysis for Mission-Driven Organizations" is a sophisticated lead generation and education tool that guides mission-driven organization leaders through:
 
 1. **The Problem**: Interactive visualizations showing the costs of technology neglect
 2. **The Solution**: Data-driven case studies demonstrating ROI of strategic tech investment  
@@ -38,7 +38,7 @@ public/
 
 ### Authority Building
 - Demonstrates systematic methodology and deep sector expertise
-- Research page positions Optimi as thought leader in nonprofit tech
+- Research page positions Optimi as thought leader in mission-driven organization tech
 - Interactive framework shows innovation beyond traditional consulting
 
 ### Client Engagement
@@ -66,4 +66,4 @@ This site is automatically deployed to Netlify. Any changes pushed to the `main`
 
 ---
 
-_Built for Optimi Digital Operations Consultancy - Strategic advisory for nonprofit technology transformation._
+_Built for Optimi Digital Operations Consultancy - Strategic advisory for mission-driven organization technology transformation._
